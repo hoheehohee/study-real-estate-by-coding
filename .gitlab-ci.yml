@@ -86,7 +86,7 @@ deployToServer:
     - ssh -o StrictHostKeyChecking=no $sshInfo 'docker login -u gitlab-ci-token -p '$CI_BUILD_TOKEN $CI_REGISTRY 
     - ssh -o StrictHostKeyChecking=no $sshInfo 'docker pull '$DOCKER_IMAGE_URL # 계정에 저장 되어 있는 docker 이미지를 받는다.
     # - ssh -o StrictHostKeyChecking=no $sshInfo 'docker-compose up -d' # 구글클라우드에 있는 docker-compose 실행
-    - ssh -o StrictHostKeyChecking=no $sshInfo 'docker-compose -f docker-compose-vuelab.yml up -d' # 구글클라우드에 있는 docker-compose 실행
+    - ssh -o StrictHostKeyChecking=no $sshInfo 'docker-compose -f docker-compose-vuelab.yml up -d' # docker-compose파일이 아닌 docker-compose-vuelab.yml파일을 따로 생성하여 실행.(특정 이미지만 서비스 실행하기 위해.)
     # --quiet: 숫자ID만 표시
     # --filter: 지정한 조건에 따라 필터 출력, dangling=true를 설정하면 이름이 없는 이미지만 출력
     # xargs: 앞서 조회한 docker image를 받아 docker rmi의 마지막 인자로 넣어야하는데 이를 위해 xargs 명령어를 사용함.
