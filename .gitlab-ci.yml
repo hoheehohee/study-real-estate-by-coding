@@ -1,0 +1,94 @@
+image: docker:latest
+
+variables:
+  SERVICE_NAME: vuelab-admin
+  DOCKER_IMAGE_URL: registry.gitlab.com/www.hohee/vuelab-admin
+
+pages: 
+  only: 
+    - develop
+  image: node:10
+  stage: build
+  cache: 
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - node_modules/
+  script:
+    - yarn install --progress=false
+    - yarn run build
+    - mv build public
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - public
+
+services:
+  - docker:dind
+
+# before_script:
+#   - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+cache: 
+  # 각 브런치의 작업이 동일한 캐시를 사용하도록 한다. 
+  # CI_COMMIT_REF_SLUG는 gitlab의 사전 정의 된 환경 변수 참조
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+
+stages: 
+  - build
+  - dockernize
+  - deployToServer
+
+build: 
+  image: node:12
+  stage: build
+  only:
+    - master
+  script:
+    - yarn install --progress=false
+    - yarn run build
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - build
+
+dockernize:
+  stage: dockernize
+  only:
+    #- master # 브런치가 only master 일 때만
+    - master
+  script:
+    # gitlab 자체 컨테이너 레지스터리를 사용하기 때문에 
+    # docker 로그인을 username: gitlab-ci-token, password:$CI_BUILD_TOKEN  
+    # $CI_REGISTRY: gitlab 컨테이너 레지스트리의 주소
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY 
+    - docker build -t $DOCKER_IMAGE_URL . # Dockerfile에 작성한 되로 이미지를 생성
+    - docker images
+    - docker push $DOCKER_IMAGE_URL # 생성된 docker 이미지를 로그인된 계정으로 저장
+
+deployToServer:
+  stage: deployToServer
+  only: 
+    - master
+  script:
+    # apk --no-chache 로컬에 패키지의 인덱스를 저장하지 않는다. Docker 컨테이너를 가볍게 유지할 수 있다.
+    # apk packaage 
+    # - jq: 커맨드라인 JSON 처리기
+    # - python: A high-level scripting language
+    # - py-pip: Python 패키지 설치 및 관리 도구
+    # $DEPLOY_KEY: SSH Key를 생성 한 후 퍼블릭 키(id_rsa.pub)는 구글클라우드에 등록 하고 프라이빗키(id_rsa) Gitlab > Setting > Variable에 등록
+    # $sshInfo: 구글클라우드에 등록 된 ssh key 사용자이름@호스트IP를 Gitlab > Setting > Variable에 등록
+    - apk add --no-cache curl jq python py-pip openssh
+    - mkdir -p ~/.ssh                         # .ssh 폴더 생성. -p: 여러 인덱스의 하위 디렉토리를 생성시에 사용
+    - echo -e "$DEPLOY_KEY" > ~/.ssh/id_rsa   # ssh key 프라이빗를 구글클라우드에 등록
+    - chmod 600 ~/.ssh/id_rsa                 # 권한 부여 rw-------로 표현, 유저는 읽고 쓰기 가능, 그룹사용자, 일반사용자는 아무 권한 없음.
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n"'  # /.dockerenv 파일의 존재를 확인하여 이미지가 Docker 내에서 실행 되어 있음을 감지함.
+    - ssh -o StrictHostKeyChecking=no $sshInfo 'docker login -u gitlab-ci-token -p '$CI_BUILD_TOKEN $CI_REGISTRY 
+    - ssh -o StrictHostKeyChecking=no $sshInfo 'docker pull '$DOCKER_IMAGE_URL # 계정에 저장 되어 있는 docker 이미지를 받는다.
+    - ssh -o StrictHostKeyChecking=no $sshInfo 'docker-compose up -d' # 구글클라우드에 있는 docker-compose 실행
+    # --quiet: 숫자ID만 표시
+    # --filter: 지정한 조건에 따라 필터 출력, dangling=true를 설정하면 이름이 없는 이미지만 출력
+    # xargs: 앞서 조회한 docker image를 받아 docker rmi의 마지막 인자로 넣어야하는데 이를 위해 xargs 명령어를 사용함.
+    # --no-run-if-empty 옵션은 결과가 빈 결과면 커맨드를 실행하지 않는다는 뜻
+    - ssh -o StrictHostKeyChecking=no $sshInfo 'docker images --quiet --filter=dangling=true | xargs --no-run-if-empty docker rmi'  # 쓸모 없는 이미지 삭제
+
