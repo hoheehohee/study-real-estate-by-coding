@@ -37,7 +37,7 @@ const Sidebar = ({ open, variant, onClose, className, ...rest }: Props) => {
         className={clsx(classes.root, className)}
       > 
         <Days />
-        {/* <Divider className={classes.divider} /> */}
+        <Divider className={classes.divider} />
         <SidebarNav
           className={classes.nav}
           pages={pages}
