@@ -2,11 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import { Divider, Drawer } from '@material-ui/core';
-import { 
-  Dashboard, People, ShoppingBasket, 
-  TextFields, Image, AccountBox,
-  Settings, LockOpen
-} from '@material-ui/icons';
+import { Dashboard } from '@material-ui/icons';
 
 import { SidebarNav } from './components';
 
