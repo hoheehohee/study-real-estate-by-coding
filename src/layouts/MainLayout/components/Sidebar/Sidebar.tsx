@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Divider, Drawer } from '@material-ui/core';
 import { Dashboard } from '@material-ui/icons';
 
-import { SidebarNav } from './components';
+import { SidebarNav, Days } from './components';
 
 interface Props {
   open: boolean
@@ -35,8 +35,9 @@ const Sidebar = ({ open, variant, onClose, className, ...rest }: Props) => {
       <div
         {...rest}
         className={clsx(classes.root, className)}
-      >
-        <Divider className={classes.divider} />
+      > 
+        <Days />
+        {/* <Divider className={classes.divider} /> */}
         <SidebarNav
           className={classes.nav}
           pages={pages}
