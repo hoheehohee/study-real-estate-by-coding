@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useMediaQuery } from '@material-ui/core';
 
-import { TopBar, Sidebar } from './components';
+import { TopBar, Sidebar, Footer } from './components';
 
 interface Props {
   children: React.ComponentType<any>;
@@ -44,7 +44,7 @@ const MainLayout = ({ children }: Props) => {
       />
       <main className={classes.content}>
         {children}
-        {/* <Footer /> */}
+        <Footer />
       </main>
     </div>
   );
@@ -64,7 +64,6 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     height: '100%',
-    background: theme.palette.bgColor
   }
 }));
 

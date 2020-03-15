@@ -21,9 +21,12 @@ export interface Pages {
 
 const Sidebar = ({ open, variant, onClose, className, ...rest }: Props) => {
   const classes = useStyles();
+
+  // LNB 목록
   const pages: Pages[] = [
     { title: 'Dashboard', href: '/dashboard', icon: <Dashboard /> }
   ]
+
   return (
     <Drawer
       anchor="left"
@@ -36,8 +39,10 @@ const Sidebar = ({ open, variant, onClose, className, ...rest }: Props) => {
         {...rest}
         className={clsx(classes.root, className)}
       > 
+        {/** 날짜 */}
         <Days />
         <Divider className={classes.divider} />
+        {/** LNB 리스트 */}
         <SidebarNav
           className={classes.nav}
           pages={pages}

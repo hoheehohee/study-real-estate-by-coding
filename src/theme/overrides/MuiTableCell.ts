@@ -5,5 +5,11 @@ export default {
   root: {
     ...typography.body1,
     borderBottom: `1px solid ${palette.divider}`
+  },
+  head: {
+    color: '#fff'
+  },
+  body: {
+    color: '#fff'
   }
 };

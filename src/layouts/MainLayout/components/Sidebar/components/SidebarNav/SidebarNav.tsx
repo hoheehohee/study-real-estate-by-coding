@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import { NavLink as RouterLink } from 'react-router-dom';
-import { List, ListItem, Button, colors } from '@material-ui/core';
+import { List, ListItem, Button } from '@material-ui/core';
 
 import { Pages } from '../../Sidebar';
 interface Props {
@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 0
   },
   button: {
-    color: colors.blueGrey[800],
+    color: '#38BDBB',
     padding: '10px 8px',
     justifyContent: 'flex-start',
     textTransform: 'none',
@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: theme.typography.fontWeightMedium
   },
   icon: {
-    color: theme.palette.icon,
+    color: '#38BDBB',
     width: 24,
     height: 24,
     display: 'flex',
