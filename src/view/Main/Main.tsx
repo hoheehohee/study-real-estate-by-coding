@@ -2,8 +2,6 @@ import React from 'react';
 import { Grid, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { SampleTable } from './components';
-
 const Main = () => {
   const classes = useStyles();
   return (
@@ -14,9 +12,7 @@ const Main = () => {
           spacing={2}
         >
           <Grid item xs={12} lg={6}>
-            <Paper className={classes.paper}>
-              <SampleTable />
-            </Paper>
+            <Paper className={classes.paper}></Paper>
           </Grid>
           <Grid item xs={12} lg={6}>
             <Paper className={classes.paper}>xs=12 lg=6</Paper>

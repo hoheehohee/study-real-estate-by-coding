@@ -1,6 +1,19 @@
 import palette from './palette';
 
 export default {
+  fontFamily: `
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Roboto',
+    'Oxygen',
+    'Ubuntu',
+    'Cantarell',
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
+  `,
   h1: {
     color: palette.text.primary,
     fontWeight: 500,

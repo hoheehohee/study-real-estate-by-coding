@@ -32,7 +32,7 @@ const Days = () => {
     { title: moment(date).format("DD")},
     { title: moment(date).format("ddd")},
   ]
-  console.log('%c##### debug: ', 'color: #058FD7', moment(new Date()).format("YY MM DD"));
+  
   return (
     <Grid container className={classes.root} spacing={2}>
       {

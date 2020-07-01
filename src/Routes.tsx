@@ -2,9 +2,8 @@ import React from 'react';
 import { Switch, Redirect } from 'react-router-dom';
 
 import RouteWithLayout from 'components/RouteWithLayout';
-import { Main } from 'view';
-import { MainLayout } from 'layouts';
-
+import { Main, Login } from 'view';
+import { MainLayout, CenterLayout } from 'layouts';
 
 const Routes = () => {
   return (
@@ -12,13 +11,19 @@ const Routes = () => {
       <Redirect
         exact
         from="/"
-        to="/main"
+        to="/login"
       />
       <RouteWithLayout
         exact
         path="/main"
         component={Main}
         layout={MainLayout}
+      />
+      <RouteWithLayout
+        exact
+        path="/login"
+        component={Login}
+        layout={CenterLayout}
       />
     </Switch>
   );
