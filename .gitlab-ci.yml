@@ -6,7 +6,7 @@ variables:
 
 pages: 
   only: 
-    - develop
+    - develop-test
   image: node:12
   stage: build
   cache: 
