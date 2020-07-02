@@ -7,7 +7,7 @@ variables:
 pages: 
   only: 
     - develop
-  image: node:10
+  image: node:12
   stage: build
   cache: 
     key: ${CI_COMMIT_REF_SLUG}
@@ -46,7 +46,8 @@ build:
     - master
   script:
     - yarn install --progress=false
-    - yarn run build
+    # CI="" 는 yarn build 실행 시 warning 로그를 error로 인식하지 않기 위함.
+    - CI="" yarn build;
   artifacts:
     expire_in: 1 week
     paths:
