@@ -28,7 +28,6 @@ export const changeFiled = createAction(
 
 export const initializeForm = createAction(INITIALIZE_FORM, (form: any) => form);
 export const login = createAction(LOGIN, ({ username, password }: LoginDto) => {
-  console.log('%c##### debug-login: ', 'color: #058FD7', { username, password });
   return ({
     username,
     password
