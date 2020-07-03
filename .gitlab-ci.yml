@@ -79,7 +79,7 @@ deployToServer:
     # - py-pip: Python 패키지 설치 및 관리 도구
     # $DEPLOY_KEY: SSH Key를 생성 한 후 퍼블릭 키(id_rsa.pub)는 구글클라우드에 등록 하고 프라이빗키(id_rsa) Gitlab > Setting > Variable에 등록
     # $sshInfo: 구글클라우드에 등록 된 ssh key 사용자이름@호스트IP를 Gitlab > Setting > Variable에 등록
-    - apk add --no-cache curl jq python py-pip openssh
+    - apk add --no-cache curl jq python3 py-pip openssh
     - mkdir -p ~/.ssh                         # .ssh 폴더 생성. -p: 여러 인덱스의 하위 디렉토리를 생성시에 사용
     - echo -e "$DEPLOY_KEY" > ~/.ssh/id_rsa   # ssh key 프라이빗를 구글클라우드에 등록
     - chmod 600 ~/.ssh/id_rsa                 # 권한 부여 rw-------로 표현, 유저는 읽고 쓰기 가능, 그룹사용자, 일반사용자는 아무 권한 없음.
