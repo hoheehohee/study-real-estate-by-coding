@@ -6,7 +6,8 @@ import axios from 'axios';
  */
 const client = axios.create({
   baseURL: 'http://localhost:4000',
-  timeout: 10000
+  timeout: 10000,
+  withCredentials: true
 });
 
 /**
@@ -17,6 +18,7 @@ const client = axios.create({
 client.interceptors.request.use(
   (config) => {
     // 요청 바로 직전( axios 설정값에 대해 작성 가능 )
+    console.log('%c##### debug-coifng: ', 'color: #058FD7', config);
     return config;
   },
   (error) => {
