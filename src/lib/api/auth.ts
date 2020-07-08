@@ -8,3 +8,6 @@ export const login = ({ username, password }: LoginDto) => (
 
 // 로그인 체크
 export const check = () => client.get('/api/auth/check');
+
+// 로그아웃
+export const logout = () =>  client.post('/api/auth/logout');

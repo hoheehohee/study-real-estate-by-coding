@@ -1,4 +1,4 @@
-const COLOR_O1 = 'rgb(65, 199, 199)';
+// const COLOR_O1 = 'rgb(65, 199, 199)';
 export default {
   '@global': {
     '*': {
@@ -41,7 +41,7 @@ export default {
       color: 'white'
     },
     '.link-btn': {
-      color: COLOR_O1
+      color: 'rgb(65, 199, 199)'
     },
   }
 }

@@ -17,5 +17,5 @@ export default {
   MuiTypography,
   MuiTableRow,
   MuiInput,
-  MuiCssBaseline
+  MuiCssBaseline,
 };

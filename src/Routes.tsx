@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Redirect } from 'react-router-dom';
 
 import RouteWithLayout from 'components/RouteWithLayout';
-import { Main, Login } from 'view';
+import { Main, Login, RealEstate } from 'view';
 import { MainLayout, CenterLayout } from 'layouts';
 
 const Routes = () => {
@@ -17,6 +17,12 @@ const Routes = () => {
         exact
         path="/main"
         component={Main}
+        layout={MainLayout}
+      />
+      <RouteWithLayout
+        exact
+        path="/realestate"
+        component={RealEstate}
         layout={MainLayout}
       />
       <RouteWithLayout

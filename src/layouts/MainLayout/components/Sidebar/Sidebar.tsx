@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import { Divider, Drawer } from '@material-ui/core';
-import { Dashboard } from '@material-ui/icons';
+import { InsertChart, Apartment, Home, LibraryBooks } from '@material-ui/icons';
 
 import { SidebarNav, Days } from './components';
 
@@ -17,6 +17,7 @@ export interface Pages {
   title: string;
   href: string;
   icon: JSX.Element;
+  children?: Pages[]
 }
 
 const Sidebar = ({ open, variant, onClose, className, ...rest }: Props) => {
@@ -24,7 +25,18 @@ const Sidebar = ({ open, variant, onClose, className, ...rest }: Props) => {
 
   // LNB 목록
   const pages: Pages[] = [
-    { title: 'Dashboard', href: '/dashboard', icon: <Dashboard /> }
+    { 
+      title: 'Dashboard', href: '/main', icon: <InsertChart /> 
+    },
+    { 
+      title: 'Real Estate', 
+      href: '/realestate', 
+      icon: <Home />,
+      children: [
+        { title: '분양임대 공고문', href: '/main', icon: <Apartment /> },
+        { title: '청약센터 공지사항', href: '/main', icon: <LibraryBooks /> }
+      ]
+    },
   ]
 
   return (
@@ -55,7 +67,7 @@ const Sidebar = ({ open, variant, onClose, className, ...rest }: Props) => {
 const useStyles = makeStyles((theme) => ({
   drawer: {
     width: 240,
-    border: `1px solid ${theme.palette.white}`,
+    border: `1px solid #4A4D56`,
     borderBottom: 'none',
     [theme.breakpoints.up('lg')]: {
       marginTop: 64,

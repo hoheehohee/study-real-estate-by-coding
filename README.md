@@ -7,4 +7,5 @@
 5. Login page 작업
 > Login UI 및 API 연동
 6. redux 세팅
-
+7. Main 작업
+> sidevar menu 작업중

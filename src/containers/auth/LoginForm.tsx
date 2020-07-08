@@ -47,7 +47,6 @@ const LoginForm = ({ history }: RouteComponentProps) => {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log('%c##### debug-?: ', 'color: #058FD7');
     if (authError) {
       console.log('%c##### Error: ', 'color: red', authError);
       setError('로그인 실패');
