@@ -3,12 +3,14 @@ import { colors } from '@material-ui/core';
 const white = '#FFFFFF';
 const black = '#000000';
 const bgColor = '#191B1F';
-const backColor = '#4A4D56'
+const backColor = '#4A4D56';
+const textColor = '#41C7C7';
 
 export default {
   black,
   white,
   bgColor,
+  textColor,
   primary: {
     contrastText: white,
     dark: colors.indigo[900],

@@ -1,23 +1,33 @@
 import React from 'react';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { Typography } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import TreeItem, { TreeItemProps } from '@material-ui/lab/TreeItem';
-import { SvgIconProps } from '@material-ui/core/SvgIcon';
-import { Typography } from '@material-ui/core';
 
-type StyledTreeItemProps = TreeItemProps & {
+interface Props {
   bgColor?: string;
   color?: string;
   labelIcon: JSX.Element;
   labelInfo?: string;
   labelText: string;
+  page: string;
   children?: JSX.Element;
-};
+  nodeId: string;
+}
 
-const MenuItem = (props: StyledTreeItemProps) => {
+
+
+const MenuItem = (props: Props & TreeItemProps & RouteComponentProps) => {
   const classes = useStyles();
-  const { labelText, labelIcon, labelInfo, color, bgColor, children, ...other } = props;
+  const { labelText, labelIcon, labelInfo, color, bgColor, children, page, nodeId, history } = props;
+
+  const onClick = () => {
+    history.push(page);
+  };
+  console.log('%c##### debug-color: ', 'color: #058FD7', color);
   return (
     <TreeItem
+      onClick={onClick}
       label={
         <div className={classes.labelRoot}>
           <div className={classes.labelIcon}>
@@ -44,9 +54,9 @@ const MenuItem = (props: StyledTreeItemProps) => {
         group: classes.group,
         label: classes.label,
       }}
-      {...other}
+      nodeId={nodeId}
     >
-      {children && children}
+      {children}
     </TreeItem>
   )
 };
@@ -54,19 +64,18 @@ const MenuItem = (props: StyledTreeItemProps) => {
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     color: 'rgb(65, 199, 199)',
-    '&:hover > $content': {
-      backgroundColor: theme.palette.action.hover,
-    },
     '&:focus > $content, &$selected > $content': {
-      // backgroundColor: `var(--tree-view-bg-color, ${theme.palette.grey[400]})`,
+      '& h6': {
+        textDecoration: 'underline'
+      },
       color: 'rgb(65, 199, 199)',
     },
     '&:focus > $content $label, &:hover > $content $label, &$selected > $content $label': {
-      // backgroundColor: 'transparent',
+      backgroundColor: 'transparent',
     },
   },
   content: {
-    color: 'rgb(65, 199, 199)',
+    color: theme.palette.text.secondary,
     borderTopRightRadius: theme.spacing(2),
     borderBottomRightRadius: theme.spacing(2),
     paddingRight: theme.spacing(1),
@@ -101,4 +110,4 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export default MenuItem;
+export default withRouter(MenuItem);

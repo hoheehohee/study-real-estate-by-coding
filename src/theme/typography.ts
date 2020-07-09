@@ -1,19 +1,7 @@
 import palette from './palette';
 
 export default {
-  fontFamily: `
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    'Roboto',
-    'Oxygen',
-    'Ubuntu',
-    'Cantarell',
-    'Fira Sans',
-    'Droid Sans',
-    'Helvetica Neue',
-    sans-serif;
-  `,
+  fontFamily: `IBM Plex Mono, monospace`,
   h1: {
     color: palette.text.primary,
     fontWeight: 500,
@@ -63,7 +51,7 @@ export default {
     lineHeight: '25px'
   },
   subtitle2: {
-    color: palette.text.secondary,
+    color: palette.text.primary,
     fontWeight: 400,
     fontSize: '14px',
     letterSpacing: '-0.05px',

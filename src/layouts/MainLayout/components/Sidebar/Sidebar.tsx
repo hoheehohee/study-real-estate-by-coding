@@ -33,7 +33,7 @@ const Sidebar = ({ open, variant, onClose, className, ...rest }: Props) => {
       href: '/realestate', 
       icon: <Home />,
       children: [
-        { title: '분양임대 공고문', href: '/main', icon: <Apartment /> },
+        { title: '분양임대 공고문', href: '/LhLeaseNoticeInfo', icon: <Apartment /> },
         { title: '청약센터 공지사항', href: '/main', icon: <LibraryBooks /> }
       ]
     },

@@ -9,3 +9,5 @@
 6. redux 세팅
 7. Main 작업
 > sidevar menu 작업중
+5. 분양임대 공고문  
+> main UI 작업중

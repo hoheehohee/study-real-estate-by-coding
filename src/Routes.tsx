@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Redirect } from 'react-router-dom';
 
 import RouteWithLayout from 'components/RouteWithLayout';
-import { Main, Login, RealEstate } from 'view';
+import { Main, Login, RealEstate, LhLeaseNoticeInfo } from 'view';
 import { MainLayout, CenterLayout } from 'layouts';
 
 const Routes = () => {
@@ -12,6 +12,12 @@ const Routes = () => {
         exact
         from="/"
         to="/login"
+      />
+      <RouteWithLayout
+        exact
+        path="/login"
+        component={Login}
+        layout={CenterLayout}
       />
       <RouteWithLayout
         exact
@@ -27,9 +33,9 @@ const Routes = () => {
       />
       <RouteWithLayout
         exact
-        path="/login"
-        component={Login}
-        layout={CenterLayout}
+        path="/LhLeaseNoticeInfo"
+        component={LhLeaseNoticeInfo}
+        layout={MainLayout}
       />
     </Switch>
   );
