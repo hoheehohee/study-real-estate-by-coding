@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
       },
       padding: '0 8px',
       height: 57,
-      borderRight: `1px solid ${theme.palette.white}`
+      borderRight: `1px solid #4A4D56`
     },
   },
   area: {

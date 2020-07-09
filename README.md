@@ -5,4 +5,9 @@
 3. days 작업
 4. main 구조 및 테이블 테마 작업
 5. Login page 작업
+> Login UI 및 API 연동
 6. redux 세팅
+7. Main 작업
+> sidevar menu 작업중
+5. 분양임대 공고문  
+> main UI 작업중

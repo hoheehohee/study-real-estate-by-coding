@@ -11,5 +11,8 @@ export default {
   },
   body: {
     color: '#fff'
+  },
+  stickyHeader: {
+    backgroundColor: '#2A2D33'
   }
 };

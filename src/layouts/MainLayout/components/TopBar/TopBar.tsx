@@ -5,28 +5,35 @@ import InputIcon from '@material-ui/icons/Input';
 import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import { Link as RouterLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Badge, Hidden, IconButton } from '@material-ui/core';
+import { AppBar, Toolbar, Badge, Hidden, IconButton, Typography, Tooltip } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     boxShadow: 'none',
     background: theme.palette.bgColor,
-    border: `1px solid ${theme.palette.white}`
+    border: `1px solid #4A4D56`
   },
   flexGrow: {
     flexGrow: 1
   },
   signOutButton: {
     marginLeft: theme.spacing(1)
+  },
+  img: {
+    width: 30
+  },
+  title: {
+    padding: '1rem'
   }
 }));
 
 interface Props {
   className?: any;
+  onLogout(): void;
   onSidebarOpen(): void;
 }
 
-const TopBar = ({ className, onSidebarOpen, ...rest }: Props) => {
+const TopBar = ({ className, onLogout, onSidebarOpen, ...rest }: Props) => {
   const { useState } = React;
   const classes = useStyles();
   const [notifications] = useState([]);
@@ -39,12 +46,14 @@ const TopBar = ({ className, onSidebarOpen, ...rest }: Props) => {
         <RouterLink to="/">
           <img
             alt="Logo"
-            // src="/images/logo.jpeg"
+            src="/images/me.png"
+            className={classes.img}
           />
         </RouterLink>
+        <Typography className={classes.title} variant="h4" >Hohee's Miscellaneous coding study</Typography>
         <div className={classes.flexGrow} />
         <Hidden mdDown>
-          <IconButton color="inherit">
+          <IconButton color="default">
             <Badge
               badgeContent={notifications.length}
               color="primary"
@@ -53,12 +62,15 @@ const TopBar = ({ className, onSidebarOpen, ...rest }: Props) => {
               <NotificationsIcon />
             </Badge>
           </IconButton>
-          <IconButton
-            className={classes.signOutButton}
-            color="inherit"
-          >
-            <InputIcon />
-          </IconButton>
+          <Tooltip title="로그아웃" aria-label="로그아웃">
+            <IconButton
+              color="default"
+              onClick={onLogout}
+              className={classes.signOutButton}
+            >
+              <InputIcon />
+            </IconButton>
+          </Tooltip>
         </Hidden>
         <Hidden lgUp>
           <IconButton

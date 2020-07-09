@@ -30,6 +30,7 @@ const AuthForm = ({ form, onChange, onSubmit }: Props) => {
         />
         <TextField 
           fullWidth
+          type="password"
           name="password"
           placeholder="비밀번호"
           value={form.password}

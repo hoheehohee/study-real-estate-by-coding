@@ -1,85 +1,66 @@
-import React, { forwardRef } from 'react';
-import clsx from 'clsx';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { NavLink as RouterLink } from 'react-router-dom';
-import { List, ListItem, Button } from '@material-ui/core';
+import { ArrowDropDown, ArrowRight } from '@material-ui/icons';
+import { TreeView } from '@material-ui/lab';
 
 import { Pages } from '../../Sidebar';
+import MenuItem from '../MenuItem';
+import palette from 'theme/palette';
 interface Props {
   pages: Pages[];
   className: any;
 }
 
-const CustomRouterLink = forwardRef((props: any, ref: any) => (
-  <div
-    ref={ref}
-    style={{ flexGrow: 1 }}
-  >
-    <RouterLink {...props} />
-  </div>
-));
 
 const SidebarNav = ({ className, pages, ...rest }: Props) => {
   const classes = useStyles();
   return (
-    <List
-      {...rest}
-      className={clsx(classes.root, className)}
+    <TreeView
+      className={classes.root}
+      defaultExpanded={['3']}
+      defaultCollapseIcon={<ArrowDropDown />}
+      defaultExpandIcon={<ArrowRight />}
+      defaultEndIcon={<div style={{ width: 24 }} />}
     >
       {
-        pages.map((page: Pages) => (
-          <ListItem
-            className={classes.item}
-            disableGutters
-            key={page.title}
+        pages.map((page: Pages, idx: number) => (
+          <MenuItem 
+            key={idx} 
+            nodeId={String(idx + 1)} 
+            labelText={page.title} 
+            labelIcon={page.icon}
+            page={page.href}
           >
-            <Button
-              activeClassName={classes.active}
-              className={classes.button}
-              component={CustomRouterLink}
-              to={page.href}
-            >
-              <div className={classes.icon}>{page.icon}</div>
-              {page.title}
-            </Button>
-          </ListItem>
+            <React.Fragment>
+              {
+                (page.children && page.children.length > 0) && (
+                  page.children.map((cPage: Pages, cIdx: number) => (
+                    <MenuItem
+                      key={String((cIdx + 1) + (idx + 1))} 
+                      nodeId={String((cIdx + 1) + (idx + 1))} 
+                      labelText={cPage.title} 
+                      labelIcon={cPage.icon}
+                      page={cPage.href}
+                      color={'red'}
+                      // bgColor={palette.textColor}
+                    />
+                  ))
+                )
+              }
+            </React.Fragment>
+          </MenuItem>
         ))
       }
-    </List>
-  );
+    </TreeView>
+  )
 };
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
-  item: {
-    display: 'flex',
-    paddingTop: 0,
-    paddingBottom: 0
-  },
-  button: {
-    color: '#38BDBB',
-    padding: '10px 8px',
-    justifyContent: 'flex-start',
-    textTransform: 'none',
-    letterSpacing: 0,
-    width: '100%',
-    fontWeight: theme.typography.fontWeightMedium
-  },
-  icon: {
-    color: '#38BDBB',
-    width: 24,
-    height: 24,
-    display: 'flex',
-    alignItems: 'center',
-    marginRight: theme.spacing(1)
-  },
-  active: {
-    color: theme.palette.primary.main,
-    fontWeight: theme.typography.fontWeightMedium,
-    '& $icon': {
-      color: theme.palette.primary.main
-    }
-  }
+  root: {
+      height: 264,
+      flexGrow: 1,
+      maxWidth: 400,
+    },
 }));
 
 export default SidebarNav;

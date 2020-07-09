@@ -1,13 +1,16 @@
 import { colors } from '@material-ui/core';
 
-const white = '#4A4D56';
+const white = '#FFFFFF';
 const black = '#000000';
 const bgColor = '#191B1F';
+const backColor = '#4A4D56';
+const textColor = '#41C7C7';
 
 export default {
   black,
   white,
   bgColor,
+  textColor,
   primary: {
     contrastText: white,
     dark: colors.indigo[900],
@@ -45,13 +48,13 @@ export default {
     light: colors.red[400]
   },
   text: {
-    primary: colors.blueGrey[900],
+    primary: white,
     secondary: colors.blueGrey[600],
     link: colors.blue[600]
   },
   background: {
     default: '#F4F6F8',
-    paper: white
+    paper: backColor
   },
   icon: colors.blueGrey[600],
   divider: colors.grey[200]
