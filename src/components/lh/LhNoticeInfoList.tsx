@@ -70,7 +70,11 @@ const rows = [
   createData('Brazil', 'BR', 210147125, 8515767),
 ];
 
-const LhNoticeInfoList = () => {
+interface Props {
+  lhLeaseNoticeInfoList: any;
+}
+
+const LhNoticeInfoList = ({ lhLeaseNoticeInfoList }: Props) => {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -102,7 +106,7 @@ const LhNoticeInfoList = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+              {rows.map((row) => {
                 return (
                   <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                     {columns.map((column) => {
