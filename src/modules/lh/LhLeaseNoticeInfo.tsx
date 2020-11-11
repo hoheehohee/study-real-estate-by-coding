@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LhNoticeInfoContainer from 'containers/lh/LhNoticeInfoContainer';
+import LhNoticeInfoContainer from './container/LhNoticeInfoContainer';
 
 const LhLeaseNoticeInfo = () => {
   return (

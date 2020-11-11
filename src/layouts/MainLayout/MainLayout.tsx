@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 
-import { logout } from 'modules/user';
-import { UserDto } from 'lib/dto/auth';
+import { logout } from 'modules/commons/userService';
+import { UserDto } from 'modules/login/LoginDTO';
 
 import { TopBar, Sidebar, Footer } from './components';
 

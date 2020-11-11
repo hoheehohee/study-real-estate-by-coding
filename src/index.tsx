@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
@@ -7,10 +6,10 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
-import rootReducer, { rootSaga } from 'modules';
+import rootReducer, { rootSaga } from 'modules/store';
 
 import { BrowserRouter as Router } from 'react-router-dom';
-import { check, tempSetUser } from 'modules/user';
+import { check, tempSetUser } from 'modules/commons/userService';
 import * as serviceWorker from './serviceWorker';
 
 const sagaMiddleware = createSagaMiddleware();

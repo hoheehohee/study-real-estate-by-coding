@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { lhLeaseNoticeInfoSel } from 'modules/lh';
+import { lhLeaseNoticeInfoSel } from '../LH_Service';
 
 import { SectionTitle } from 'components/common';
-import { LhNoticeInfoList } from 'components/lh';
+import { LhNoticeInfoList } from '../components';
 
 const LhNoticeInfoContainer = () => {
   const dispatch = useDispatch();

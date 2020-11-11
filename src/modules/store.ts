@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { all } from 'redux-saga/effects';
-import auth, { authSaga } from './auth';
-import user, { userSaga } from './user';
-import lh, { lhSaga } from './lh';
+import auth, { authSaga } from './login/LoginService';
+import user, { userSaga } from './commons/userService';
+import lh, { lhSaga } from './lh/LH_Service';
 
 const rootReducer = combineReducers({
   auth,

@@ -2,8 +2,6 @@ import React from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { Paper, Grid, Typography } from '@material-ui/core';
 
-import AuthForm from './AuthForm';
-
 interface Props {
   children: JSX.Element
 }

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { Typography, Box, TextField, Grid, Button } from '@material-ui/core';
 
-import { LoginDto } from 'lib/dto/auth';
+import { LoginDto } from 'modules/login/LoginDTO';
 
 interface Props {
   form: LoginDto;

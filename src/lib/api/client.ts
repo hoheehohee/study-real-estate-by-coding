@@ -5,7 +5,7 @@ import axios from 'axios';
  * 기본적은 axios 기본 옵션들을 지정.
  */
 const client = axios.create({
-  baseURL: 'http://localhost:4000',
+  baseURL: 'http://34.64.200.114:4000',
   timeout: 10000,
   withCredentials: true
 });

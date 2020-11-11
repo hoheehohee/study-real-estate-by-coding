@@ -1,5 +1,5 @@
 import { createAction, handleActions } from 'redux-actions';
-import { LoginDto } from '../lib/dto/auth';
+import { LoginDto } from './LoginDTO';
 /**
  * takeLatest: 기존에 진행 중이던 작업이 있다면 취소 처리하고 가장 마지막으로 실행된 작업만 수행.
  */

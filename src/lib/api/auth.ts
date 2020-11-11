@@ -1,5 +1,5 @@
 import client from './client';
-import { LoginDto } from '../dto/auth';
+import { LoginDto } from '../../modules/login/LoginDTO';
 
 // 로그인
 export const login = ({ username, password }: LoginDto) => (

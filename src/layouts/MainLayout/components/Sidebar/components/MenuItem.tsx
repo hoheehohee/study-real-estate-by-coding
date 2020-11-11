@@ -24,7 +24,7 @@ const MenuItem = (props: Props & TreeItemProps & RouteComponentProps) => {
   const onClick = () => {
     history.push(page);
   };
-  console.log('%c##### debug-color: ', 'color: #058FD7', color);
+  
   return (
     <TreeItem
       onClick={onClick}
