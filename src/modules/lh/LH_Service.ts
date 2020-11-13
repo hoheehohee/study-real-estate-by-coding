@@ -2,6 +2,7 @@ import { createAction, handleActions } from 'redux-actions';
 import { takeLatest } from 'redux-saga/effects';
 
 import * as lhAPI from 'lib/api/lh';
+import { lhLeaseNoticeInfoRespDTO } from './LH_DTO';
 import createRequestSaga, { createRequestActionType } from 'lib/createRequestSaga';
 
 // 액션 타입
@@ -31,11 +32,14 @@ const initialState = {
 // 리듀서
 const lh = handleActions(
   {
-    [LH_LEASE_NOTICEINFO_SEL_SUCCESS]: (state, { payload: lhLeaseNoticeInfoList }: any) => ({
-      ...state,
-      lhLeaseNoticeInfoList,
-      lhError: null,
-    }),
+    [LH_LEASE_NOTICEINFO_SEL_SUCCESS]: (state, { payload: lhLeaseNoticeInfoList }: any) => {
+       
+      return ({
+        ...state,
+        lhLeaseNoticeInfoList,
+        lhError: null,
+      })
+    },
     [LH_LEASE_NOTICEINFO_SEL_FAILURE]: (state, { payload: error }) => ({
       ...state,
       lhError: error

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, TablePagination } from '@material-ui/core';
 
@@ -76,8 +76,13 @@ interface Props {
 
 const LhNoticeInfoList = ({ lhLeaseNoticeInfoList }: Props) => {
   const classes = useStyles();
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  useEffect(() => {
+    console.log('#### row: ', rows)
+    console.log('#### lhLeaseNoticeInfoList: ', lhLeaseNoticeInfoList)
+  }, [lhLeaseNoticeInfoList])
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
