@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, TablePagination } from '@material-ui/core';
+import { 
+  Paper, TableContainer, Table, 
+  TableHead, TableRow, TableCell, 
+  TableBody, TablePagination 
+} from '@material-ui/core';
+
+import lhList from '../hooks/LhList';
 
 interface Column {
   id: 'name' | 'code' | 'population' | 'size' | 'density';
@@ -50,8 +56,6 @@ function createData(name: string, code: string, population: number, size: number
   return { name, code, population, size, density };
 }
 
-
-
 const rows = [
   createData('India', 'IN', 1324171354, 3287263),
   createData('China', 'CN', 1403500365, 9596961),
@@ -70,18 +74,15 @@ const rows = [
   createData('Brazil', 'BR', 210147125, 8515767),
 ];
 
-interface Props {
-  lhLeaseNoticeInfoList: any;
-}
-
-const LhNoticeInfoList = ({ lhLeaseNoticeInfoList }: Props) => {
+const LhNoticeInfoList = () => {
   const classes = useStyles();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
+  const lhLeaseNoticeInfoList = lhList();
+
   useEffect(() => {
-    console.log('#### row: ', rows)
-    console.log('#### lhLeaseNoticeInfoList: ', lhLeaseNoticeInfoList)
+    console.log('### lhLeaseNoticeInfoList: ', lhLeaseNoticeInfoList)
   }, [lhLeaseNoticeInfoList])
 
   const handleChangePage = (event: unknown, newPage: number) => {
@@ -92,6 +93,7 @@ const LhNoticeInfoList = ({ lhLeaseNoticeInfoList }: Props) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+  
   return (
     <React.Fragment>
       <Paper className={classes.root}>

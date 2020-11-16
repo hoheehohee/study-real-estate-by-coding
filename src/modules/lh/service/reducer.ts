@@ -17,7 +17,6 @@ export function* lhSaga() {
   yield takeLatest(LH_LEASE_NOTICEINFO_SEL, lhLeaseNoticeInfoSaga);
 }
 
-
 // 초기값
 const initialState: LhState = {
   lhLeaseNoticeInfoList: null
