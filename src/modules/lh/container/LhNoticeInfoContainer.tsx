@@ -1,21 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { lhLeaseNoticeInfoSel } from '../LH_Service';
+import { lhLeaseNoticeInfoSel } from '../service/actions';
 
 import { SectionTitle } from 'components/common';
 import { LhNoticeInfoList } from '../components';
+import { RootState } from 'modules/store';
 
 const LhNoticeInfoContainer = () => {
   const dispatch = useDispatch();
-
-  const { lhLeaseNoticeInfoList  } = useSelector(
-    ({ lh }: any) => {
-      return ({
-        lhLeaseNoticeInfoList: lh.lhLeaseNoticeInfoList
-      })
-    }
-  );
+  const { lhLeaseNoticeInfoList } = useSelector((state: RootState) => state.lh)
 
   useEffect(() => {
     dispatch(lhLeaseNoticeInfoSel(null));

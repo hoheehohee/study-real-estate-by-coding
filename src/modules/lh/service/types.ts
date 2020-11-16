@@ -1,4 +1,9 @@
-export interface lhLeaseNoticeInfoRespDTO {
+import { ActionType } from 'typesafe-actions';
+import * as actions from './actions';
+
+export type LhAction = ActionType<typeof actions>;
+
+export type LhLeaseNoticeInfoRespDTO = {
     AIS_TP_CD: string;    // 매물유형코드
     AIS_TP_CD_NM: string; // 공고세부유형명
     ALL_CNT: string;      // 전체조회건수
@@ -15,4 +20,8 @@ export interface lhLeaseNoticeInfoRespDTO {
     SPL_INF_TP_CD: string;    // 공고정보구분코드
     UPP_AIS_TP_CD: string;    // 상위매물유형코드
     UPP_AIS_TP_NM: string;    // 공고유형명
+  };
+
+  export type LhState = {
+    lhLeaseNoticeInfoList: LhLeaseNoticeInfoRespDTO[] | null
   }
